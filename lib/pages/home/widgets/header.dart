@@ -11,8 +11,6 @@ class HeaderSection extends StatelessWidget {
          left:  25,
          right:  25,
       ),
-      // height: 200,
-      // color: Colors.red,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

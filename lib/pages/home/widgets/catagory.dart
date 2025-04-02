@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gomestore/pages/home/widgets/newest.dart';
+import 'package:gomestore/pages/home/widgets/popular.dart';
 
 class CatagorySection extends StatelessWidget {
    CatagorySection({super.key});
@@ -29,22 +31,72 @@ class CatagorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
+      // height: 500,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: Color(0xFFF6F8FF),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
         ),
       ),
        child:  Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             height: 140,
-            color: Colors.blue,
-          )
+            
+           child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: ((context , index) => Column(
+                children: [
+                  const SizedBox(height:  25,),
+                  Container(
+                    padding:  const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius:BorderRadius.circular(20),
+                      color: categories[index]['color'] as Color ),
+                  child: Icon(
+                  categories  [index]['icon'] as IconData,
+                  color: Colors.white,
+                  size: 40,
+                  ),
+              ),
+              const SizedBox(height: 10,),
+              Text( categories[index]['title'] as String,
+              style: TextStyle(
+                 color: Colors.black.withOpacity(0.7),
+                 fontWeight: FontWeight.bold,
+                 fontSize: 16,
+                 ),
+              ),
+                ],
+              )), 
+              separatorBuilder: ((context , index) => const SizedBox(width: 33,)), 
+              itemCount: categories.length
+              ),
+          ),
+         Container(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+           width: 410,
+          child:  const Text(
+            'Popular game',
+          style:  TextStyle(fontWeight: FontWeight.bold,
+          fontSize:  20),),
+         ),
+          PopulerGame(),
 
-       ]),
+          Container(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+           width: 410,
+          child:  const Text(
+            'newst game',
+          style:  TextStyle(fontWeight: FontWeight.bold,
+          fontSize:  20),),
+         ),
+         NewestGame(),
+       ]
+       ),
     );
   }
 }
